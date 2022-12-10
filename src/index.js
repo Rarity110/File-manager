@@ -5,6 +5,7 @@ import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
 import cd from './cd.js';
+import ls from './ls.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
@@ -19,6 +20,9 @@ const start = async () => {
                 break;
             case 'cd':
                 cd(arg);
+                break;
+            case 'ls':
+                ls();
                 break;
             case '.exit':
                 exit();
