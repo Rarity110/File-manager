@@ -2,10 +2,12 @@ import * as readline from 'node:readline/promises';
 import { stdin as input, stdout as output, exit } from 'node:process';
 
 import { firstMessage, lastMessage } from './consts.js';
+import { currentDirectory } from './currentDirectory.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
     rl.write(firstMessage);
+    rl.write(currentDirectory);
 
     rl.on('line', (line) => {
         switch (line.trim()) {
