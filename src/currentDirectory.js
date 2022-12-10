@@ -1,5 +1,7 @@
-import { cwd } from 'node:process';
+import { cwd, stdout } from 'node:process';
 
-const currentDirectory = `You are currently in ${cwd()}`+ '\n';
+const currentDirectory = () => {
+    stdout.write(`You are currently in ${cwd()}`+ '\n');
+};
 
 export { currentDirectory };

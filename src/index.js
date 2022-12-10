@@ -4,19 +4,28 @@ import { stdin as input, stdout as output, exit } from 'node:process';
 import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
+import cd from './cd.js';
+
 const start = async () => {
     const rl = readline.createInterface({ input, output });
     rl.write(firstMessage);
-    rl.write(currentDirectory);
+    currentDirectory();
 
     rl.on('line', (line) => {
-        switch (line.trim()) {
-          case '.exit':
-            exit();
-            // break;
-          default:
-            console.log(`Say what? I might have heard '${line.trim()}'`);
-            break;
+        const [ commandLine, arg ] = line.split(' ');
+        switch (commandLine) {
+            case 'up':
+                cd('..');
+                break;
+            case 'cd':
+                cd(arg);
+                break;
+            case '.exit':
+                exit();
+                // break;
+            default:
+                console.log(`Say what? I might have heard '${line.trim()}'`);
+                break;
         }
         rl.prompt();
       }).on('close', () => {
