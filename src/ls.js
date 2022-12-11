@@ -3,28 +3,8 @@ import { readdir } from "fs";
 import path from "path";
 import fs from "fs";
 import { cwd } from 'node:process';
-import { fileURLToPath } from 'url';
 import { currentDirectory } from './currentDirectory.js';
 import { ERROR_MESSAGE_OPERATION, ERROR_MESSAGE_INVALID_INPUT } from './consts.js';
-
-const st = async () => {
-    
-}
-
-// const chooseFiles = async (file) => {
-//     const filePath = path.join(`${cwd()}`, file);
-//     const stats = await fs.promises.stat(filePath, (err, stats) => {
-//         if (err) throw err;
-//         return stats;
-//     });
-    
-//     if (stats.isDirectory()) {
-//         return {isDirectoty: `${path.parse(file).name}`};
-//     };
-//     if (stats.isFile()) {
-//        return {isFile: `${path.parse(file).name}.${path.extname(file).slice(1)}`};
-//     };
-// };
 
 const sort = ( a, b ) => {
     const nameA = a.toLowerCase();
@@ -37,7 +17,7 @@ const sort = ( a, b ) => {
 const ls = async () => {
     const directoriesArray = [];
     const filesArray = [];
-    
+
     readdir(process.cwd(), async (err, files) => {
     
         if (err) {

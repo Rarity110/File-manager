@@ -6,6 +6,7 @@ import { currentDirectory } from './currentDirectory.js';
 
 import cd from './cd.js';
 import ls from './ls.js';
+import cat from './cat.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
@@ -23,6 +24,9 @@ const start = async () => {
                 break;
             case 'ls':
                 ls();
+                break;
+            case 'cat':
+                cat(arg);
                 break;
             case '.exit':
                 exit();
