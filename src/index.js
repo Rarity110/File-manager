@@ -12,6 +12,7 @@ import rn from './rn.js';
 import cp from './cp.js';
 import rm from './rm.js';
 import mv from './mv.js';
+import getOsInfo from './os.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
@@ -47,6 +48,9 @@ const start = async () => {
                 break;
             case 'mv':
                 mv(arg1, arg2);
+                break;
+            case 'os':
+                getOsInfo(arg1);
                 break;
             case '.exit':
                 exit();
