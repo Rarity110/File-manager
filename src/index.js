@@ -8,6 +8,7 @@ import cd from './cd.js';
 import ls from './ls.js';
 import cat from './cat.js';
 import add from './add.js';
+import rn from './rn.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
@@ -15,22 +16,25 @@ const start = async () => {
     currentDirectory();
 
     rl.on('line', (line) => {
-        const [ commandLine, arg ] = line.split(' ');
+        const [ commandLine, arg1, arg2 ] = line.split(' ');
         switch (commandLine) {
             case 'up':
                 cd('..');
                 break;
             case 'cd':
-                cd(arg);
+                cd(arg1);
                 break;
             case 'ls':
                 ls();
                 break;
             case 'cat':
-                cat(arg);
+                cat(arg1);
                 break;
             case 'add':
-                cat(arg);
+                add(arg1);
+                break;
+            case 'rn':
+                rn(arg1, arg2);
                 break;
             case '.exit':
                 exit();
