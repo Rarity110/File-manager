@@ -6,7 +6,6 @@ import { writeFile } from 'node:fs/promises';
 
 const add = async (path) => {
     const filePath = `${cwd()}/${path}`;
-    console.log(filePath);
     fs.access(filePath, fs.F_OK, (err) => {
 
         if (err) {

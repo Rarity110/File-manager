@@ -9,6 +9,9 @@ import ls from './ls.js';
 import cat from './cat.js';
 import add from './add.js';
 import rn from './rn.js';
+import cp from './cp.js';
+import rm from './rm.js';
+import mv from './mv.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
@@ -35,6 +38,15 @@ const start = async () => {
                 break;
             case 'rn':
                 rn(arg1, arg2);
+                break;
+            case 'cp':
+                cp(arg1, arg2);
+                break;
+            case 'rm':
+                rm(arg1);
+                break;
+            case 'mv':
+                mv(arg1, arg2);
                 break;
             case '.exit':
                 exit();
