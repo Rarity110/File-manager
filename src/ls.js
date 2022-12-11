@@ -37,7 +37,7 @@ const ls = async () => {
                 if (stats.isFile()) {
                     filesArray.push(`${path.parse(file).name}.${path.extname(file).slice(1)}`);
                 };
-
+                // TODO add 3 category
             }
         
         }
