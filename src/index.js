@@ -13,6 +13,7 @@ import cp from './cp.js';
 import rm from './rm.js';
 import mv from './mv.js';
 import getOsInfo from './os.js';
+import getHash from './hash.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
@@ -51,6 +52,9 @@ const start = async () => {
                 break;
             case 'os':
                 getOsInfo(arg1);
+                break;
+            case 'hash':
+                getHash(arg1);
                 break;
             case '.exit':
                 exit();
