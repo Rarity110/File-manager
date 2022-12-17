@@ -4,10 +4,11 @@ import { stdin as input, stdout as output, exit } from 'node:process';
 import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
-import cd from './fs/cd.js';
-import ls from './fs/ls.js';
-import cat from './fs/cat.js';
-import add from './fs/add.js';
+import { cd, ls, cat, add } from './fs';
+// import cd from './fs/cd.js';
+// import ls from './fs/ls.js';
+// import cat from './fs/cat.js';
+// import add from './fs/add.js';
 import rn from './rn.js';
 import cp from './cp.js';
 import rm from './rm.js';
@@ -69,7 +70,7 @@ const start = async () => {
                 exit();
                 // break;
             default:
-                console.log(`Say what? I might have heard '${line.trim()}'`);
+                // console.log(`Say what? I might have heard '${line.trim()}'`);
                 break;
         }
         rl.prompt();
