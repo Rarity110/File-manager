@@ -2,9 +2,9 @@ import { cwd, stdout } from "process";
 import fs, { readdir } from "fs";
 import path from "path";
 
-import { currentDirectory } from './currentDirectory.js';
+import { currentDirectory } from '../currentDirectory.js';
 
-import { ERROR_MESSAGE_OPERATION, ERROR_MESSAGE_INVALID_INPUT } from './consts.js';
+import { ERROR_MESSAGE_OPERATION, ERROR_MESSAGE_INVALID_INPUT } from '../consts.js';
 
 const sort = ( a, b ) => {
     const nameA = a.toLowerCase();

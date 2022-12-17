@@ -5,8 +5,8 @@ import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
 import cd from './fs/cd.js';
-import ls from './ls.js';
-import cat from './cat.js';
+import ls from './fs/ls.js';
+import cat from './fs/cat.js';
 import add from './add.js';
 import rn from './rn.js';
 import cp from './cp.js';
@@ -30,14 +30,13 @@ const start = async () => {
                 cd('..');
                 break;
             case 'cd':
-                console.log(...rest);
                 cd(args);
                 break;
             case 'ls':
                 ls();
                 break;
             case 'cat':
-                cat(arg1);
+                cat(args);
                 break;
             case 'add':
                 add(arg1);
