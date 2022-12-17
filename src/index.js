@@ -7,7 +7,7 @@ import { currentDirectory } from './currentDirectory.js';
 import cd from './fs/cd.js';
 import ls from './fs/ls.js';
 import cat from './fs/cat.js';
-import add from './add.js';
+import add from './fs/add.js';
 import rn from './rn.js';
 import cp from './cp.js';
 import rm from './rm.js';
@@ -39,7 +39,7 @@ const start = async () => {
                 cat(args);
                 break;
             case 'add':
-                add(arg1);
+                add(args);
                 break;
             case 'rn':
                 rn(arg1, arg2);
