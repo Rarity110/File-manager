@@ -1,9 +1,9 @@
-import { stdout } from "process";
-import { readdir } from "fs";
+import { cwd, stdout } from "process";
+import fs, { readdir } from "fs";
 import path from "path";
-import fs from "fs";
-import { cwd } from 'node:process';
+
 import { currentDirectory } from './currentDirectory.js';
+
 import { ERROR_MESSAGE_OPERATION, ERROR_MESSAGE_INVALID_INPUT } from './consts.js';
 
 const sort = ( a, b ) => {
@@ -15,40 +15,63 @@ const sort = ( a, b ) => {
 };
 
 const ls = async () => {
-    const directoriesArray = [];
-    const filesArray = [];
 
-    readdir(process.cwd(), async (err, files) => {
-    
-        if (err) {
-        stdout.write(`${err.message}\n`);
-        stdout.write(ERROR_MESSAGE_INVALID_INPUT);
-        } else {
-            
-            for (const file of files) {
-                const filePath = path.join(`${cwd()}`, file);
-                const stats = await fs.promises.stat(filePath, (err, stats) => {
-                    if (err) throw err;
-                    return stats;
-                });
-                if (stats.isDirectory()) {
-                    directoriesArray.push(`${path.parse(file).name}`);
-                };
-                if (stats.isFile()) {
-                    filesArray.push(`${path.parse(file).name}.${path.extname(file).slice(1)}`);
-                };
-                // TODO add 3 category
+    try {
+        const directoriesArray = [];
+        const filesArray = [];
+        const otherArray = [];
+
+        readdir(process.cwd(), async (err, files) => {
+
+            if (err) {
+                stdout.write(`Error: ${err.message}\n`);
+                stdout.write(ERROR_MESSAGE_INVALID_INPUT);
+
+            } else {
+
+                for (const file of files) {
+
+                    const filePath = path.join(`${cwd()}`, file);
+
+                    try {
+
+                        const stats = await fs.promises.stat(filePath, (err, stats) => {
+                            if (err) console.log('err', err);
+                            return stats;
+                        });
+
+                        if (stats.isDirectory()) directoriesArray.push(`${path.parse(file).name}`);
+                        if (stats.isFile()) filesArray.push(`${path.parse(file).name}.${path.extname(file).slice(1)}`);
+
+                    } catch (error) {
+                        otherArray.push(`${path.parse(file).name}`);
+                    }
+                }
+
             }
+            
+            directoriesArray.sort((a, b) => sort(a,b));
+            filesArray.sort((a, b) => sort(a,b));
+            otherArray.sort((a, b) => sort(a,b));
+
+            const filesAllArray = [];
+
+            directoriesArray.forEach((fileName) => filesAllArray.push({ name: fileName, type: 'directory' }));
+            filesArray.forEach((fileName) => filesAllArray.push({ name: fileName, type: 'file' }));
+            otherArray.forEach((fileName) => filesAllArray.push({ name: fileName, type: 'unknown' }));
+
+            console.table(filesAllArray);
+
+            currentDirectory();
+        })
         
-        }
-        directoriesArray.sort((a, b) => sort(a,b));
-        filesArray.sort((a, b) => sort(a,b));
-        const filesAllArray = [];
-        directoriesArray.forEach((fileName) => filesAllArray.push({ name: fileName, type: 'directory' }));
-        filesArray.forEach((fileName) => filesAllArray.push({ name: fileName, type: 'file' }));
-        console.table(filesAllArray);
+    } catch (error) {
+
+        stdout.write(ERROR_MESSAGE_OPERATION);
         currentDirectory();
-})
+
+    }
+
 };
 
 export default ls;

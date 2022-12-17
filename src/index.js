@@ -4,7 +4,7 @@ import { stdin as input, stdout as output, exit } from 'node:process';
 import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
-import cd from './cd.js';
+import cd from './fs/cd.js';
 import ls from './ls.js';
 import cat from './cat.js';
 import add from './add.js';
@@ -14,6 +14,8 @@ import rm from './rm.js';
 import mv from './mv.js';
 import getOsInfo from './os.js';
 import getHash from './hash.js';
+// import compress from './compress.js';
+// import decompress from './decompress.js';
 
 const start = async () => {
     const rl = readline.createInterface({ input, output });
@@ -21,13 +23,15 @@ const start = async () => {
     currentDirectory();
 
     rl.on('line', (line) => {
-        const [ commandLine, arg1, arg2 ] = line.split(' ');
+        const [ commandLine, ...rest ] = line.split(' ');
+        const args = line.replace(commandLine, '').trim();
         switch (commandLine) {
             case 'up':
                 cd('..');
                 break;
             case 'cd':
-                cd(arg1);
+                console.log(...rest);
+                cd(args);
                 break;
             case 'ls':
                 ls();
@@ -56,6 +60,12 @@ const start = async () => {
             case 'hash':
                 getHash(arg1);
                 break;
+            // case "compress":
+            //     compress(arg1, arg2);
+            //     break;
+            // case "decompress":
+            //     decompress(arg1, arg2);
+            //     break;
             case '.exit':
                 exit();
                 // break;
