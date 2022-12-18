@@ -4,12 +4,12 @@ import { stdin as input, stdout as output, exit } from 'node:process';
 import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
-import { cd, ls, cat, add } from './fs';
+import { cd, ls, cat, add, rn } from './fs/index.js';
 // import cd from './fs/cd.js';
 // import ls from './fs/ls.js';
 // import cat from './fs/cat.js';
 // import add from './fs/add.js';
-import rn from './rn.js';
+// import rn from './fs/rn.js';
 import cp from './cp.js';
 import rm from './rm.js';
 import mv from './mv.js';
@@ -24,7 +24,7 @@ const start = async () => {
     currentDirectory();
 
     rl.on('line', (line) => {
-        const [ commandLine, ...rest ] = line.split(' ');
+        const commandLine = line.split(' ')[0];
         const args = line.replace(commandLine, '').trim();
         switch (commandLine) {
             case 'up':
@@ -43,22 +43,22 @@ const start = async () => {
                 add(args);
                 break;
             case 'rn':
-                rn(arg1, arg2);
+                rn(args);
                 break;
             case 'cp':
                 cp(arg1, arg2);
                 break;
             case 'rm':
-                rm(arg1);
+                rm(args);
                 break;
             case 'mv':
                 mv(arg1, arg2);
                 break;
             case 'os':
-                getOsInfo(arg1);
+                getOsInfo(args);
                 break;
             case 'hash':
-                getHash(arg1);
+                getHash(args);
                 break;
             // case "compress":
             //     compress(arg1, arg2);
