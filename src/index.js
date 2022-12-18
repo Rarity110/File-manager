@@ -4,13 +4,13 @@ import { stdin as input, stdout as output, exit } from 'node:process';
 import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
-import { cd, ls, cat, add, rn } from './fs/index.js';
+import { cd, ls, cat, add, rn, cp } from './fs/index.js';
 // import cd from './fs/cd.js';
 // import ls from './fs/ls.js';
 // import cat from './fs/cat.js';
 // import add from './fs/add.js';
 // import rn from './fs/rn.js';
-import cp from './cp.js';
+// import cp from './fs/cp.js';
 import rm from './rm.js';
 import mv from './mv.js';
 import getOsInfo from './os.js';
@@ -46,7 +46,7 @@ const start = async () => {
                 rn(args);
                 break;
             case 'cp':
-                cp(arg1, arg2);
+                cp(args);
                 break;
             case 'rm':
                 rm(args);

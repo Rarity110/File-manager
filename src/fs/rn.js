@@ -18,7 +18,7 @@ const rn = async (args) => {
             path = pathOld;
             newName = pathNew;
         } else {
-            stdout.write('1', ERROR_MESSAGE_INVALID_INPUT);
+            stdout.write(ERROR_MESSAGE_INVALID_INPUT);
             currentDirectory();
         };
 
