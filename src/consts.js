@@ -1,7 +1,5 @@
-import { argv } from 'node:process';
-
 const parseArgs = () => {
-    const args = argv.slice(2).toString().trim();
+    const args = process.argv.slice(2).toString().trim();
     const userName = args.startsWith('--username') ? args.split('=').pop() : "Anonimus";
     return userName;
 };

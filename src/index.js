@@ -4,21 +4,14 @@ import { stdin as input, stdout as output, exit } from 'node:process';
 import { firstMessage, lastMessage } from './consts.js';
 import { currentDirectory } from './currentDirectory.js';
 
-import { cd, ls, cat, add, rn, cp } from './fs/index.js';
-// import cd from './fs/cd.js';
-// import ls from './fs/ls.js';
-// import cat from './fs/cat.js';
-// import add from './fs/add.js';
-// import rn from './fs/rn.js';
-// import cp from './fs/cp.js';
-import rm from './rm.js';
-import mv from './mv.js';
+import { cd, ls, cat, add, rn, cp, mv, rm } from './fs/index.js';
 import getOsInfo from './os.js';
 import getHash from './hash.js';
 // import compress from './compress.js';
 // import decompress from './decompress.js';
 
 const start = async () => {
+    console.log(process.argv);
     const rl = readline.createInterface({ input, output });
     rl.write(firstMessage);
     currentDirectory();
@@ -52,7 +45,7 @@ const start = async () => {
                 rm(args);
                 break;
             case 'mv':
-                mv(arg1, arg2);
+                mv(args);
                 break;
             case 'os':
                 getOsInfo(args);
@@ -83,4 +76,5 @@ process.on('exit', (code) => {
     console.log(lastMessage);
 });
 
+console.log(process.argv);
 await start();
