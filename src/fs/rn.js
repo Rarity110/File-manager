@@ -3,28 +3,15 @@ import { rename } from 'node:fs';
 import { currentDirectory } from '../currentDirectory.js';
 import { stdout } from 'node:process';
 import argsPair from './helpers.js';
-
+import arg from '../helpers/arg.js';
 
 const rn = async (args) => {
     try {
         const [ filePath, filePathCopy ] = argsPair(args);
-        // let path;
-        // let newName;
+        const file = arg(filePath);
+        const fileCopy = arg(filePathCopy);
 
-        // if (args.indexOf('" "') !== -1) {
-        //     const [ pathOld, pathNew ] = args.split('" ');
-        //     path = pathOld.slice(1);
-        //     newName = pathNew.slice(1, -1);
-        // } else if (args.split(' ').length === 2) {
-        //     const [ pathOld, pathNew ] = args.split(' ');
-        //     path = pathOld;
-        //     newName = pathNew;
-        // } else {
-        //     stdout.write(ERROR_MESSAGE_INVALID_INPUT);
-        //     currentDirectory();
-        // };
-
-        rename (filePath, filePathCopy, (err) => {
+        rename (file, fileCopy, (err) => {
             if (err) {
                 stdout.write(ERROR_MESSAGE_INVALID_INPUT);
             };

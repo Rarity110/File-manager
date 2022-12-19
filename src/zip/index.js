@@ -1,4 +1,4 @@
-import compress from "./compress";
-import decompress from "./decompress";
+import compress from "./compress.js";
+import decompress from "./decompress.js";
 
 export { compress, decompress };

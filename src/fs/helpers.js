@@ -1,3 +1,6 @@
+import { stdout } from 'node:process';
+import { currentDirectory } from  '../currentDirectory.js';
+
 const argsPair = (args) => {
     let filePath;
     let filePathCopy;

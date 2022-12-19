@@ -8,12 +8,12 @@ import argsPair from '../fs/helpers.js';
 import { ERROR_MESSAGE_OPERATION, ERROR_MESSAGE_INVALID_INPUT } from '../consts.js';
 
 const compress = async (args) => {
-    const [ filePath, filePathCopy ] = argsPair(args);
-    const pathFile = resolve(cwd(), filePath);
-    const basenameFile = basename(pathFile);
-    const nameZip = resolve(cwd(), filePathCopy, basenameFile + '.br');
     
     try {
+        const [ filePath, filePathCopy ] = argsPair(args);
+        const pathFile = resolve(cwd(), filePath);
+        const basenameFile = basename(pathFile);
+        const nameZip = resolve(cwd(), filePathCopy, basenameFile + '.br');
 
         fs.access(nameZip, fs.F_OK, (err) => {
             
