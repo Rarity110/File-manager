@@ -9,6 +9,10 @@ const argsPair = (args) => {
         const [ pathOld, pathNew ] = args.split('" ');
         filePath = pathOld.slice(1);
         filePathCopy = pathNew.slice(1, -1);
+    } else if (args.indexOf("' '") !== -1) {
+        const [ pathOld, pathNew ] = args.split("' ");
+        filePath = pathOld.slice(1);
+        filePathCopy = pathNew.slice(1, -1);
     } else if (args.split(' ').length === 2) {
         const [ pathOld, pathNew ] = args.split(' ');
         filePath = pathOld;
