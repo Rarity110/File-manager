@@ -7,7 +7,7 @@ import { currentDirectory } from './currentDirectory.js';
 import { cd, ls, cat, add, rn, cp, mv, rm } from './fs/index.js';
 import getOsInfo from './os.js';
 import getHash from './hash.js';
-// import compress from './compress.js';
+import compress from './zip/compress.js';
 // import decompress from './decompress.js';
 
 const start = async () => {
@@ -53,9 +53,9 @@ const start = async () => {
             case 'hash':
                 getHash(args);
                 break;
-            // case "compress":
-            //     compress(arg1, arg2);
-            //     break;
+            case "compress":
+                compress(args);
+                break;
             // case "decompress":
             //     decompress(arg1, arg2);
             //     break;
